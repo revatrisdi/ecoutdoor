@@ -677,7 +677,14 @@
     // =====================================================================
     function renderOrderCard(order, index) {
       const badge  = getBadge(order);
-      const imgSrc = order.product_gambar ? `${ASSET_BASE}/${order.product_gambar}` : `${ASSET_BASE}/placeholder.png`;
+      let imgSrc = `${ASSET_BASE}/placeholder.png`;
+      if (order.product_gambar) {
+        if (order.product_gambar.startsWith('data:image')) {
+          imgSrc = order.product_gambar;
+        } else {
+          imgSrc = `${ASSET_BASE}/${order.product_gambar}`;
+        }
+      }
       const metode = { transfer:'🏦 Transfer Bank', cod:'💵 COD' }[order.metode_bayar] ?? order.metode_bayar;
       const total  = 'Rp ' + Number(order.total_harga).toLocaleString('id-ID');
 
