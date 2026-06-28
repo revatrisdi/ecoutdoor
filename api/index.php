@@ -8,7 +8,12 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-echo "Hello from Vercel-PHP! If you see this, Laravel is crashing. If you don't see this, Vercel-PHP is crashing.";
-exit;
+if (!file_exists(__DIR__ . '/../public/index.php')) {
+    echo "HUGE DISCOVERY: The file public/index.php is MISSING in this Vercel Serverless Function! This means Vercel didn't bundle the rest of the project.";
+    exit;
+} else {
+    echo "The file public/index.php EXISTS! The crash is happening inside Laravel.";
+    exit;
+}
 
 require __DIR__ . '/../public/index.php';
