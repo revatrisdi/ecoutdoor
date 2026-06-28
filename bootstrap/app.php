@@ -26,6 +26,12 @@ $app = Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*'),
         );
+        // VERCEL DEBUG: Catch the original exception before it tries to render a view!
+        $exceptions->render(function (\Throwable $e, Request $request) {
+            echo "<h1>ORIGINAL EXCEPTION CAUGHT IN HANDLER!</h1>";
+            echo "<pre>" . (string) $e . "</pre>";
+            exit;
+        });
     })->create();
 
 // VERCEL SPECIFIC: Override storage path to /tmp because Vercel is Read-Only
