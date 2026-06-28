@@ -26,7 +26,7 @@ class CheckoutController extends Controller
                     'id' => $product->id,
                     'name' => $product->nama_produk,
                     'price' => $product->harga,
-                    'image' => asset('images/' . $product->nama_file_gambar),
+                    'image' => $product->image_url,
                     'qty' => (int) $request->qty,
                     'stok' => $product->stok
                 ];
