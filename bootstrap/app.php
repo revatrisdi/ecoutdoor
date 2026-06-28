@@ -27,3 +27,18 @@ return Application::configure(basePath: dirname(__DIR__))
             fn (Request $request) => $request->is('api/*'),
         );
     })->create();
+
+// VERCEL SPECIFIC: Override storage path to /tmp because Vercel is Read-Only
+if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
+    $storagePath = '/tmp/storage';
+    if (!is_dir($storagePath)) {
+        mkdir($storagePath, 0777, true);
+        mkdir($storagePath.'/framework/cache/data', 0777, true);
+        mkdir($storagePath.'/framework/views', 0777, true);
+        mkdir($storagePath.'/framework/sessions', 0777, true);
+        mkdir($storagePath.'/logs', 0777, true);
+    }
+    $app->useStoragePath($storagePath);
+}
+
+return $app;
