@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECOutdoor — Perlengkapan Outdoor Terbaik</title>
+  <meta name="description"
+    content="ECOutdoor menyediakan perlengkapan outdoor premium — tenda, carrier, sepatu hiking, dan lebih banyak lagi. Siap menemani setiap petualangan Anda." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              50: '#f0f7f0',
+              100: '#d8ecd8',
+              200: '#b3d9b3',
+              300: '#7dbf7d',
+              400: '#4da34d',
+              500: '#2d8a2d',
+              600: '#1e6e1e',
+              700: '#175517',
+              800: '#124012',
+              900: '#0b2d0b',
+              950: '#061a06',
+            },
+            stone: {
+              50: '#f5f5f3',
+              100: '#e7e6e2',
+              200: '#d0cec8',
+              300: '#b3b0a6',
+              400: '#918e84',
+              500: '#787469',
+              600: '#625f55',
+              700: '#504e46',
+              800: '#42403b',
+              900: '#393733',
+              950: '#1f1e1b',
+            },
+            adventure: {
+              50: '#fff8ed',
+              100: '#ffefd3',
+              200: '#ffdba6',
+              300: '#ffc06d',
+              400: '#ff9b33',
+              500: '#ff7c0a',
+              600: '#f06000',
+              700: '#c74900',
+              800: '#9e3a00',
+              900: '#7f3100',
+              950: '#451600',
+            },
+          },
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            playfair: ['"Playfair Display"', 'serif'],
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.7s ease-out both',
+            'fade-in': 'fadeIn 0.6s ease-out both',
+            'slide-right': 'slideRight 0.6s ease-out both',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-subtle': 'bounceSub 2s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideRight: {
+              '0%': { opacity: '0', transform: 'translateX(-30px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            bounceSub: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #1f1e1b;
+    }
+
+    /* Glassmorphism Navbar */
+    .navbar-glass {
+      background: rgba(11, 45, 11, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(77, 163, 77, 0.15);
+    }
+
+    /* Hero overlay gradient */
+    .hero-overlay {
+      background: linear-gradient(135deg,
+          rgba(6, 26, 6, 0.80) 0%,
+          rgba(11, 45, 11, 0.55) 40%,
+          rgba(69, 22, 0, 0.45) 100%);
+    }
+
+    /* Product card hover glow */
+    .product-card {
+      background: linear-gradient(145deg, #242420, #2e2d28);
+      border: 1px solid rgba(77, 163, 77, 0.12);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(77, 163, 77, 0.15);
+      border-color: rgba(77, 163, 77, 0.35);
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.08);
+    }
+
+    .product-img {
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Badge shimmer */
+    .badge-shimmer {
+      background: linear-gradient(90deg, #ff7c0a, #ffb347, #ff7c0a);
+      background-size: 200% auto;
+      animation: shimmer 2.5s linear infinite;
+    }
+
+    @keyframes shimmer {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    /* CTA button */
+    .btn-primary {
+      background: linear-gradient(135deg, #ff7c0a, #f06000);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ffb347, #ff7c0a);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 124, 10, 0.45);
+    }
+
+    /* Outline button */
+    .btn-outline {
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: #ff7c0a;
+      color: #ff7c0a;
+      background: rgba(255, 124, 10, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Cart badge */
+    .cart-badge {
+      background: linear-gradient(135deg, #ff7c0a, #f06000);
+      animation: pulse-ring 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-ring {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    /* Star rating */
+    .stars {
+      color: #ff9b33;
+    }
+
+    /* Features strip */
+    .features-strip {
+      background: linear-gradient(90deg, #0b2d0b 0%, #175517 50%, #0b2d0b 100%);
+      border-top: 1px solid rgba(77, 163, 77, 0.2);
+      border-bottom: 1px solid rgba(77, 163, 77, 0.2);
+    }
+
+    /* Section heading accent */
+    .heading-accent::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #ff7c0a, #ffb347);
+      border-radius: 2px;
+      margin: 12px auto 0;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      animation: bounceSub 2s ease-in-out infinite;
+    }
+
+    /* Nav links hover */
+    .nav-link {
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ff7c0a;
+      border-radius: 1px;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: #ff9b33;
+    }
+
+    /* Category tags */
+    .tag {
+      background: rgba(77, 163, 77, 0.15);
+      border: 1px solid rgba(77, 163, 77, 0.25);
+      color: #7dbf7d;
+      transition: all 0.3s;
+    }
+
+    .tag:hover {
+      background: rgba(77, 163, 77, 0.3);
+      color: #b3d9b3;
+    }
+
+    /* Add to cart button */
+    .btn-cart {
+      background: rgba(255, 124, 10, 0.1);
+      border: 1px solid rgba(255, 124, 10, 0.35);
+      color: #ff9b33;
+      transition: all 0.3s;
+    }
+
+    .btn-cart:hover {
+      background: linear-gradient(135deg, #ff7c0a, #f06000);
+      border-color: #ff7c0a;
+      color: #ffffff;
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(255, 124, 10, 0.35);
+    }
+
+    /* Wishlist */
+    .btn-wish {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s;
+    }
+
+    .btn-wish:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+
+    /* Hero floating card */
+    .floating-card {
+      background: rgba(11, 45, 11, 0.55);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(77, 163, 77, 0.25);
+      animation: bounceSub 3s ease-in-out infinite;
+    }
+
+    /* Discount badge */
+    .discount-badge {
+      background: linear-gradient(135deg, #ff7c0a, #f06000);
+    }
+  </style>
+</head>
+
+<body class="text-stone-100">
+
+  <!-- ====================== NAVBAR ====================== -->
+  <nav id="navbar" class="navbar-glass fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-3">
+
+        <!-- Logo -->
+        <a href="#" id="logo-link" class="flex items-center gap-3 group">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-forest-500 to-forest-700 flex items-center justify-center shadow-lg group-hover:shadow-forest-500/40 transition-shadow duration-300">
+            <!-- Leaf/Mountain icon -->
+            <svg class="w-6 h-6 text-adventure-400" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17 8C8 10 5.9 16.17 3.82 21H5.88C6.73 19 7.86 17.4 9.19 16.05C10.86 17.32 12.73 18 15 18H21V16C19.3 16 17.84 15.53 16.57 14.7C17.13 13.2 17.66 11.45 18 9L17 8ZM5 6L3 8C5 10.7 7.07 13.07 9.19 15.08C10.24 13.97 11.56 13 13.18 12.26C11.34 11.1 9.24 10 7 9L5 6Z" />
+            </svg>
+          </div>
+          <div>
+            <span class="text-xl font-bold font-outfit tracking-tight">
+              <span class="text-forest-400">EC</span><span class="text-white">Outdoor</span>
+            </span>
+            <p class="text-xs text-stone-400 leading-none -mt-0.5">Gear for Every Trail</p>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#produk" id="nav-produk" class="nav-link text-stone-300 font-medium text-sm">Produk</a>
+          <a href="#kategori" id="nav-kategori" class="nav-link text-stone-300 font-medium text-sm">Kategori</a>
+          <a href="#" id="nav-tentang" class="nav-link text-stone-300 font-medium text-sm">Tentang Kami</a>
+          <a href="#" id="nav-blog" class="nav-link text-stone-300 font-medium text-sm">Blog</a>
+          <a href="#" id="nav-kontak" class="nav-link text-stone-300 font-medium text-sm">Kontak</a>
+        </div>
+
+        <!-- Right: Search + Cart + CTA -->
+        <div class="flex items-center gap-3">
+          <!-- Search -->
+          <button id="search-btn"
+            class="hidden sm:flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-stone-400 text-sm hover:bg-white/10 hover:border-forest-500/40 transition-all duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+            <span class="hidden lg:inline">Cari produk...</span>
+          </button>
+
+          <!-- Wishlist -->
+          <button id="wishlist-btn"
+            class="relative p-2.5 rounded-xl hover:bg-white/10 transition-all duration-300 group">
+            <svg class="w-5 h-5 text-stone-300 group-hover:text-red-400 transition-colors" fill="none"
+              stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </button>
+
+          <!-- Cart -->
+          <button id="cart-btn" class="relative p-2.5 rounded-xl hover:bg-white/10 transition-all duration-300 group">
+            <svg class="w-5 h-5 text-stone-300 group-hover:text-adventure-400 transition-colors" fill="none"
+              stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 01-8 0" />
+            </svg>
+            <span
+              class="cart-badge absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full text-white text-[10px] font-bold flex items-center justify-center">3</span>
+          </button>
+
+          <!-- Login CTA -->
+          <a href="#" id="login-btn"
+            class="hidden sm:block btn-primary rounded-full px-5 py-2.5 text-white font-semibold text-sm shadow-lg">
+            <span>Masuk</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ====================== HERO SECTION ====================== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Hero Background Image -->
+    <div class="absolute inset-0">
+      <img src="hero_background.png" alt="Mountain landscape background" class="w-full h-full object-cover" />
+      <div class="hero-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- Decorative particles (CSS) -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-forest-600/10 blur-3xl animate-pulse-slow"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-adventure-500/8 blur-3xl animate-pulse-slow"
+        style="animation-delay:1.5s"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 items-center pt-20">
+
+        <!-- Left: Text -->
+        <div class="animate-fade-up" style="animation-delay:0.1s">
+          <!-- Badge -->
+          <div
+            class="inline-flex items-center gap-2 badge-shimmer text-white text-xs font-bold px-4 py-2 rounded-full mb-6 shadow-lg">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            GEAR TERPILIH 2025
+          </div>
+
+          <h1 class="font-playfair text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            Petualangan<br />
+            <span class="text-adventure-400">Dimulai</span><br />
+            dari Sini
+          </h1>
+
+          <p class="text-stone-300 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg">
+            Temukan perlengkapan outdoor premium yang dirancang untuk menaklukkan setiap medan — dari puncak gunung
+            tertinggi hingga hutan terdalam.
+          </p>
+
+          <!-- Stats -->
+          <div class="flex items-center gap-8 mb-10">
+            <div>
+              <p class="text-3xl font-bold text-white">500<span class="text-adventure-400">+</span></p>
+              <p class="text-stone-400 text-sm">Produk Premium</p>
+            </div>
+            <div class="w-px h-10 bg-stone-600"></div>
+            <div>
+              <p class="text-3xl font-bold text-white">12K<span class="text-adventure-400">+</span></p>
+              <p class="text-stone-400 text-sm">Petualang Puas</p>
+            </div>
+            <div class="w-px h-10 bg-stone-600"></div>
+            <div>
+              <p class="text-3xl font-bold text-white">4.9<span class="text-adventure-400">★</span></p>
+              <p class="text-stone-400 text-sm">Rating Rata-rata</p>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap gap-4">
+            <a href="#produk" id="hero-shop-btn"
+              class="btn-primary rounded-full px-8 py-4 text-white font-bold text-base shadow-xl inline-block">
+              <span>🏕️ Belanja Sekarang</span>
+            </a>
+            <a href="#" id="hero-catalog-btn"
+              class="btn-outline rounded-full px-8 py-4 text-white font-semibold text-base inline-block">
+              Lihat Katalog
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Floating Info Card -->
+        <div class="hidden lg:flex flex-col items-end gap-5 animate-fade-up" style="animation-delay:0.35s">
+          <!-- Big floating card -->
+          <div class="floating-card rounded-2xl p-6 max-w-xs w-full">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 rounded-full bg-adventure-500/20 flex items-center justify-center text-adventure-400">
+                🏔️
+              </div>
+              <div>
+                <p class="text-white font-bold text-sm">Pilihan #1 Pendaki</p>
+                <p class="text-stone-400 text-xs">Indonesia Outdoor Community</p>
+              </div>
+            </div>
+            <div class="flex -space-x-2 mb-3">
+              <div
+                class="w-8 h-8 rounded-full bg-forest-600 border-2 border-stone-900 flex items-center justify-center text-xs">
+                🧗</div>
+              <div
+                class="w-8 h-8 rounded-full bg-forest-700 border-2 border-stone-900 flex items-center justify-center text-xs">
+                ⛺</div>
+              <div
+                class="w-8 h-8 rounded-full bg-forest-800 border-2 border-stone-900 flex items-center justify-center text-xs">
+                🥾</div>
+              <div
+                class="w-8 h-8 rounded-full bg-adventure-700 border-2 border-stone-900 flex items-center justify-center text-[10px] font-bold text-white">
+                +99</div>
+            </div>
+            <p class="text-stone-300 text-xs">Bergabung dengan lebih dari <strong
+                class="text-forest-400">12.000+</strong> petualang yang telah mempercayai ECOutdoor.</p>
+          </div>
+
+          <!-- Small promo card -->
+          <div class="floating-card rounded-2xl p-4 max-w-xs w-full" style="animation-delay: 0.5s">
+            <div class="flex items-center gap-3">
+              <div
+                class="discount-badge w-12 h-12 rounded-xl flex items-center justify-center text-white font-black text-lg flex-shrink-0">
+                %</div>
+              <div>
+                <p class="text-white font-bold text-sm">Flash Sale Hari Ini!</p>
+                <p class="text-stone-400 text-xs">Diskon hingga <span class="text-adventure-400 font-bold">40%</span>
+                  untuk produk pilihan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
+      <a href="#features"
+        class="flex flex-col items-center gap-2 text-stone-400 hover:text-adventure-400 transition-colors">
+        <span class="text-xs font-medium tracking-widest uppercase">Scroll</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M19 9l-7 7-7-7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ====================== FEATURES STRIP ====================== -->
+  <section id="features" class="features-strip py-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-forest-500/20 flex items-center justify-center flex-shrink-0 text-xl">🚚
+          </div>
+          <div>
+            <p class="text-white font-semibold text-sm">Gratis Ongkir</p>
+            <p class="text-stone-400 text-xs">Pembelian ≥ Rp 500rb</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-forest-500/20 flex items-center justify-center flex-shrink-0 text-xl">🛡️
+          </div>
+          <div>
+            <p class="text-white font-semibold text-sm">Garansi Resmi</p>
+            <p class="text-stone-400 text-xs">1–3 Tahun Produk</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-forest-500/20 flex items-center justify-center flex-shrink-0 text-xl">↩️
+          </div>
+          <div>
+            <p class="text-white font-semibold text-sm">Easy Return</p>
+            <p class="text-stone-400 text-xs">30 Hari Pengembalian</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-forest-500/20 flex items-center justify-center flex-shrink-0 text-xl">💳
+          </div>
+          <div>
+            <p class="text-white font-semibold text-sm">Bayar Aman</p>
+            <p class="text-stone-400 text-xs">SSL & Multi-Payment</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================== PRODUK UNGGULAN ====================== -->
+  <section id="produk" class="py-24 bg-stone-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center mb-16 animate-fade-up">
+        <span class="inline-block text-adventure-400 text-sm font-bold tracking-widest uppercase mb-3">— Koleksi Terbaik
+          —</span>
+        <h2 class="heading-accent font-playfair text-4xl sm:text-5xl font-bold text-white mb-4">
+          Produk Unggulan
+        </h2>
+        <p class="text-stone-400 text-lg max-w-2xl mx-auto">
+          Dirancang untuk performa ekstra, dipilih oleh para petualang sejati.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div id="kategori" class="flex flex-wrap justify-center gap-3 mb-12">
+        <button id="filter-all"
+          class="tag active px-5 py-2 rounded-full text-sm font-medium cursor-pointer">Semua</button>
+        <button id="filter-tenda" class="tag px-5 py-2 rounded-full text-sm font-medium cursor-pointer">🏕️
+          Tenda</button>
+        <button id="filter-tas" class="tag px-5 py-2 rounded-full text-sm font-medium cursor-pointer">🎒 Tas &
+          Carrier</button>
+        <button id="filter-sepatu" class="tag px-5 py-2 rounded-full text-sm font-medium cursor-pointer">🥾 Alas
+          Kaki</button>
+        <button id="filter-aksesoris" class="tag px-5 py-2 rounded-full text-sm font-medium cursor-pointer">🧭
+          Aksesoris</button>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Product 1: Tenda 4P -->
+        <article id="product-tent" class="product-card rounded-2xl overflow-hidden group">
+          <div class="relative overflow-hidden h-64">
+            <img src="product_tent.png" alt="Tenda Camping 4 Person" class="product-img w-full h-full object-cover" />
+            <!-- Overlay on hover -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-5">
+              <span class="text-white text-sm font-semibold">Lihat Detail</span>
+            </div>
+            <!-- Badges -->
+            <div class="absolute top-3 left-3 flex flex-col gap-2">
+              <span
+                class="badge-shimmer text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">BESTSELLER</span>
+            </div>
+            <div class="absolute top-3 right-3">
+              <button id="wish-tent"
+                class="btn-wish w-8 h-8 rounded-full flex items-center justify-center text-stone-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-2">
+              <div>
+                <span class="tag text-[10px] px-2.5 py-1 rounded-full font-medium">🏕️ Tenda</span>
+                <h3 class="text-white font-bold text-xl mt-2 group-hover:text-forest-400 transition-colors">Tenda Summit
+                  4P</h3>
+                <p class="text-stone-400 text-sm mt-1">Kapasitas 4 orang · Anti-badai · Waterproof 5000mm</p>
+              </div>
+            </div>
+
+            <!-- Stars -->
+            <div class="flex items-center gap-2 my-3">
+              <div class="stars flex text-sm">★★★★★</div>
+              <span class="text-stone-400 text-sm">(128 ulasan)</span>
+            </div>
+
+            <!-- Specs -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">4
+                Orang</span>
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">3
+                Musim</span>
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">2.8kg</span>
+            </div>
+
+            <!-- Price & Cart -->
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-stone-500 text-xs line-through">Rp 1.200.000</p>
+                <p class="text-adventure-400 font-black text-2xl">Rp 899.000</p>
+              </div>
+              <button id="cart-tent"
+                class="btn-cart rounded-xl px-4 py-2.5 font-semibold text-sm flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+                Keranjang
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 2: Carrier 60L -->
+        <article id="product-carrier" class="product-card rounded-2xl overflow-hidden group">
+          <div class="relative overflow-hidden h-64">
+            <img src="product_carrier.png" alt="Tas Carrier 60L" class="product-img w-full h-full object-cover" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-5">
+              <span class="text-white text-sm font-semibold">Lihat Detail</span>
+            </div>
+            <div class="absolute top-3 left-3">
+              <span class="bg-forest-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">NEW
+                ARRIVAL</span>
+            </div>
+            <div class="absolute top-3 right-3">
+              <button id="wish-carrier"
+                class="btn-wish w-8 h-8 rounded-full flex items-center justify-center text-stone-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-2">
+              <div>
+                <span class="tag text-[10px] px-2.5 py-1 rounded-full font-medium">🎒 Carrier</span>
+                <h3 class="text-white font-bold text-xl mt-2 group-hover:text-forest-400 transition-colors">Trail
+                  Carrier 60L</h3>
+                <p class="text-stone-400 text-sm mt-1">60 liter · Ergonomik · Frame alumunium</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 my-3">
+              <div class="stars flex text-sm">★★★★★</div>
+              <span class="text-stone-400 text-sm">(94 ulasan)</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">60L</span>
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">Rain
+                Cover</span>
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">1.8kg</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-stone-500 text-xs line-through">Rp 950.000</p>
+                <p class="text-adventure-400 font-black text-2xl">Rp 749.000</p>
+              </div>
+              <button id="cart-carrier"
+                class="btn-cart rounded-xl px-4 py-2.5 font-semibold text-sm flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+                Keranjang
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 3: Sepatu Hiking -->
+        <article id="product-boots" class="product-card rounded-2xl overflow-hidden group">
+          <div class="relative overflow-hidden h-64">
+            <img src="product_boots.png" alt="Sepatu Hiking" class="product-img w-full h-full object-cover" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-5">
+              <span class="text-white text-sm font-semibold">Lihat Detail</span>
+            </div>
+            <div class="absolute top-3 left-3 flex flex-col gap-2">
+              <span class="discount-badge text-white text-[10px] font-black px-2.5 py-1 rounded-full shadow">SALE
+                30%</span>
+            </div>
+            <div class="absolute top-3 right-3">
+              <button id="wish-boots"
+                class="btn-wish w-8 h-8 rounded-full flex items-center justify-center text-stone-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-2">
+              <div>
+                <span class="tag text-[10px] px-2.5 py-1 rounded-full font-medium">🥾 Sepatu</span>
+                <h3 class="text-white font-bold text-xl mt-2 group-hover:text-forest-400 transition-colors">Peak Hiker
+                  Pro</h3>
+                <p class="text-stone-400 text-sm mt-1">Waterproof · Vibram Sole · Mid-cut</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 my-3">
+              <div class="stars flex text-sm">★★★★☆</div>
+              <span class="text-stone-400 text-sm">(217 ulasan)</span>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">Vibram</span>
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">WP
+                Leather</span>
+              <span
+                class="bg-forest-950/60 border border-forest-800/40 text-forest-400 text-[10px] px-2 py-0.5 rounded">36–45</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-stone-500 text-xs line-through">Rp 850.000</p>
+                <p class="text-adventure-400 font-black text-2xl">Rp 595.000</p>
+              </div>
+              <button id="cart-boots"
+                class="btn-cart rounded-xl px-4 py-2.5 font-semibold text-sm flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+                Keranjang
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- View All Button -->
+      <div class="text-center mt-14">
+        <a href="#" id="view-all-btn"
+          class="btn-primary rounded-full px-10 py-4 text-white font-bold text-base shadow-xl inline-block">
+          <span>Lihat Semua Produk →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================== TESTIMONIAL STRIP ====================== -->
+  <section class="py-16 bg-forest-950/50 border-t border-forest-800/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div
+          class="text-center p-6 rounded-2xl bg-white/3 border border-white/5 hover:border-forest-600/30 transition-colors duration-300">
+          <div class="stars text-2xl mb-3">★★★★★</div>
+          <p class="text-stone-300 text-sm leading-relaxed mb-4">"Tenda Summit 4P benar-benar kokoh di tengah badai di
+            Semeru. Sangat rekomen!"</p>
+          <p class="text-forest-400 font-semibold text-sm">— Reza A., Malang</p>
+        </div>
+
+        <div
+          class="text-center p-6 rounded-2xl bg-white/3 border border-white/5 hover:border-forest-600/30 transition-colors duration-300">
+          <div class="stars text-2xl mb-3">★★★★★</div>
+          <p class="text-stone-300 text-sm leading-relaxed mb-4">"Carrier 60L-nya nyaman banget! Frame alumuniumnya
+            bikin punggung nggak sakit meski bawa banyak."</p>
+          <p class="text-forest-400 font-semibold text-sm">— Dian P., Jakarta</p>
+        </div>
+
+        <div
+          class="text-center p-6 rounded-2xl bg-white/3 border border-white/5 hover:border-forest-600/30 transition-colors duration-300">
+          <div class="stars text-2xl mb-3">★★★★★</div>
+          <p class="text-stone-300 text-sm leading-relaxed mb-4">"Sepatu hiking-nya grip-nya kuat banget di jalur
+            berbatu. Kaki tetap kering walaupun lewat sungai."</p>
+          <p class="text-forest-400 font-semibold text-sm">— Budi S., Bandung</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="bg-stone-950 border-t border-stone-800/50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+
+        <!-- Brand -->
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-forest-500 to-forest-700 flex items-center justify-center">
+              <svg class="w-6 h-6 text-adventure-400" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17 8C8 10 5.9 16.17 3.82 21H5.88C6.73 19 7.86 17.4 9.19 16.05C10.86 17.32 12.73 18 15 18H21V16C19.3 16 17.84 15.53 16.57 14.7C17.13 13.2 17.66 11.45 18 9L17 8ZM5 6L3 8C5 10.7 7.07 13.07 9.19 15.08C10.24 13.97 11.56 13 13.18 12.26C11.34 11.1 9.24 10 7 9L5 6Z" />
+              </svg>
+            </div>
+            <span class="text-xl font-bold"><span class="text-forest-400">EC</span><span
+                class="text-white">Outdoor</span></span>
+          </div>
+          <p class="text-stone-400 text-sm leading-relaxed">Perlengkapan outdoor premium untuk setiap petualangan. Dari
+            gunung ke lembah, kami siap menemani.</p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Produk</h4>
+          <ul class="space-y-2 text-stone-400 text-sm">
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Tenda & Shelter</a></li>
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Tas & Carrier</a></li>
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Alas Kaki</a></li>
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Pakaian Outdoor</a></li>
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Aksesoris</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4">Layanan</h4>
+          <ul class="space-y-2 text-stone-400 text-sm">
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Tentang Kami</a></li>
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Blog & Panduan</a></li>
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">FAQ</a></li>
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Kebijakan Return</a></li>
+            <li><a href="#" class="hover:text-adventure-400 transition-colors">Hubungi Kami</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4">Ikuti Kami</h4>
+          <div class="flex gap-3 mb-6">
+            <a href="#" id="social-ig"
+              class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-stone-400 hover:text-adventure-400 hover:border-adventure-400/40 transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="#" id="social-tiktok"
+              class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-stone-400 hover:text-adventure-400 hover:border-adventure-400/40 transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.12z" />
+              </svg>
+            </a>
+            <a href="#" id="social-wa"
+              class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-stone-400 hover:text-adventure-400 hover:border-adventure-400/40 transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.029 18.88a9.87 9.87 0 01-4.724-1.207L2.88 19.12l1.482-4.306a9.844 9.844 0 01-1.373-5.069C2.989 7.023 7.042 3 12.029 3c2.425 0 4.7.946 6.413 2.663A9.015 9.015 0 0121.059 12c0 4.988-4.048 9.04-9.03 9.04v-.16z" />
+              </svg>
+            </a>
+          </div>
+          <p class="text-stone-500 text-xs">© 2025 ECOutdoor. Semua hak cipta dilindungi.</p>
+        </div>
+
+      </div>
+
+      <div class="border-t border-stone-800/50 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-stone-500 text-xs">Dibuat dengan ❤️ untuk para petualang Indonesia</p>
+        <div class="flex gap-4 text-stone-500 text-xs">
+          <a href="#" class="hover:text-stone-300 transition-colors">Syarat & Ketentuan</a>
+          <a href="#" class="hover:text-stone-300 transition-colors">Kebijakan Privasi</a>
+          <a href="#" class="hover:text-stone-300 transition-colors">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================== JAVASCRIPT ====================== -->
+  <script>
+    // Navbar scroll behavior
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(6, 26, 6, 0.92)';
+      } else {
+        navbar.style.background = 'rgba(11, 45, 11, 0.6)';
+      }
+    });
+
+    // Cart interaction
+    let cartCount = 3;
+    const cartBadge = document.querySelector('.cart-badge');
+
+    function addToCart(productName) {
+      cartCount++;
+      cartBadge.textContent = cartCount;
+      cartBadge.style.transform = 'scale(1.5)';
+      setTimeout(() => { cartBadge.style.transform = 'scale(1)'; }, 300);
+
+      // Show mini toast notification
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full text-white font-semibold text-sm shadow-2xl';
+      toast.style.background = 'linear-gradient(135deg, #1e6e1e, #2d8a2d)';
+      toast.style.backdropFilter = 'blur(10px)';
+      toast.style.transition = 'all 0.3s ease';
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(20px)';
+      toast.innerHTML = `✓ <strong>${productName}</strong> ditambahkan ke keranjang`;
+      document.body.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+      });
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(20px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    document.getElementById('cart-tent').addEventListener('click', () => addToCart('Tenda Summit 4P'));
+    document.getElementById('cart-carrier').addEventListener('click', () => addToCart('Trail Carrier 60L'));
+    document.getElementById('cart-boots').addEventListener('click', () => addToCart('Peak Hiker Pro'));
+
+    // Wishlist toggle
+    document.querySelectorAll('[id^="wish-"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const svg = btn.querySelector('svg path');
+        const active = btn.dataset.active === 'true';
+        if (!active) {
+          svg.style.fill = '#f87171';
+          svg.style.stroke = '#f87171';
+          btn.dataset.active = 'true';
+        } else {
+          svg.style.fill = 'none';
+          svg.style.stroke = 'currentColor';
+          btn.dataset.active = 'false';
+        }
+      });
+    });
+
+    // Scroll-based fade-in animation for product cards
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, i * 150);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(40px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+
+</body>
+
+</html>
