@@ -43,6 +43,20 @@ if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
     @mkdir($storagePath.'/framework/sessions', 0777, true);
     @mkdir($storagePath.'/logs', 0777, true);
     $app->useStoragePath($storagePath);
+
+    // Override Bootstrap Cache Paths to /tmp
+    $bootstrapCache = '/tmp/storage/bootstrap/cache';
+    @mkdir($bootstrapCache, 0777, true);
+    putenv('APP_PACKAGES_CACHE='.$bootstrapCache.'/packages.php');
+    putenv('APP_SERVICES_CACHE='.$bootstrapCache.'/services.php');
+    putenv('APP_ROUTES_CACHE='.$bootstrapCache.'/routes.php');
+    putenv('APP_CONFIG_CACHE='.$bootstrapCache.'/config.php');
+    putenv('APP_EVENTS_CACHE='.$bootstrapCache.'/events.php');
+    $_ENV['APP_PACKAGES_CACHE'] = $bootstrapCache.'/packages.php';
+    $_ENV['APP_SERVICES_CACHE'] = $bootstrapCache.'/services.php';
+    $_ENV['APP_ROUTES_CACHE'] = $bootstrapCache.'/routes.php';
+    $_ENV['APP_CONFIG_CACHE'] = $bootstrapCache.'/config.php';
+    $_ENV['APP_EVENTS_CACHE'] = $bootstrapCache.'/events.php';
 }
 
 return $app;
