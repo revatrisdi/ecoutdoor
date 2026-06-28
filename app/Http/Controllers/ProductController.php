@@ -42,11 +42,11 @@ class ProductController extends Controller
             'gambar.max'           => 'Ukuran gambar maksimal 2MB.',
         ]);
 
-        // 2. Proses upload gambar ke public/images/
-        $file      = $request->file('gambar');
-        $extension = $file->getClientOriginalExtension();
-        $fileName  = Str::slug($validated['nama_produk']) . '_' . time() . '.' . $extension;
-        $file->move(public_path('images'), $fileName);
+        // 2. Convert gambar ke Base64 (untuk Vercel Read-Only)
+        $file = $request->file('gambar');
+        $imageType = $file->getClientMimeType();
+        $imageData = base64_encode(file_get_contents($file->getRealPath()));
+        $base64Image = 'data:' . $imageType . ';base64,' . $imageData;
 
         // 3. Simpan ke database dengan user_id dari user yang sedang login
         Product::create([
@@ -56,7 +56,7 @@ class ProductController extends Controller
             'deskripsi'        => $validated['deskripsi'],
             'harga'            => $validated['harga'] + 10000,
             'stok'             => $validated['stok'],
-            'nama_file_gambar' => $fileName,
+            'nama_file_gambar' => $base64Image,
         ]);
 
         return redirect()
@@ -126,17 +126,10 @@ class ProductController extends Controller
 
         // Jika ada gambar baru, upload dan hapus gambar lama
         if ($request->hasFile('gambar')) {
-            $file      = $request->file('gambar');
-            $extension = $file->getClientOriginalExtension();
-            $newName   = Str::slug($validated['nama_produk']) . '_' . time() . '.' . $extension;
-            $file->move(public_path('images'), $newName);
-
-            $oldPath = public_path('images/' . $product->nama_file_gambar);
-            if (file_exists($oldPath)) {
-                @unlink($oldPath);
-            }
-
-            $fileName = $newName;
+            $file = $request->file('gambar');
+            $imageType = $file->getClientMimeType();
+            $imageData = base64_encode(file_get_contents($file->getRealPath()));
+            $fileName = 'data:' . $imageType . ';base64,' . $imageData;
         }
 
         $product->update([
@@ -164,11 +157,7 @@ class ProductController extends Controller
 
         $namaProduk = $product->nama_produk;
 
-        $imagePath = public_path('images/' . $product->nama_file_gambar);
-        if (file_exists($imagePath)) {
-            @unlink($imagePath);
-        }
-
+        // Gambar sekarang disimpan di database, jadi akan terhapus saat record dihapus
         $product->delete();
 
         return redirect()

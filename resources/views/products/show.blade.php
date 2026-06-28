@@ -257,7 +257,7 @@
           <div class="img-wrapper relative rounded-3xl overflow-hidden aspect-square"
                style="background:#242420; border:1px solid rgba(77,163,77,0.12);">
             <img id="main-product-img"
-                 src="{{ asset('images/' . $product->nama_file_gambar) }}"
+                 src="{{ $product->image_url }}"
                  alt="{{ $product->nama_produk }}"
                  class="product-main-img w-full h-full object-cover" />
             <!-- Stock badge overlay -->
@@ -407,7 +407,7 @@
               </a>
 
               <!-- Masukkan Keranjang — Tambah ke keranjang lokal -->
-              <button onclick="addToCart({{ $product->id }}, '{{ addslashes($product->nama_produk) }}', {{ $product->harga }}, '{{ asset('images/' . $product->nama_file_gambar) }}', {{ $product->stok }}, qty)"
+              <button onclick="addToCart({{ $product->id }}, '{{ addslashes($product->nama_produk) }}', {{ $product->harga }}, '{{ $product->image_url }}', {{ $product->stok }}, qty)"
                  id="btn-keranjang"
                  class="btn-cart-outline flex-1 flex items-center justify-center gap-2.5 rounded-2xl px-6 py-4 font-bold text-base cursor-pointer">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">

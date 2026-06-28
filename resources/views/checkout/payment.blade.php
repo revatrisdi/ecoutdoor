@@ -253,7 +253,7 @@
     </div>
     <!-- Product mini preview -->
     <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(45,138,45,0.08); border:1px solid rgba(77,163,77,0.2); border-radius:1rem; padding:0.75rem 1rem; margin-top:0.5rem;">
-      <img src="{{ asset('images/' . $order->product->nama_file_gambar) }}"
+      <img src="{{ $order->product->image_url }}"
            alt="{{ $order->product->nama_produk }}"
            style="width:44px; height:44px; object-fit:cover; border-radius:0.6rem; border:1px solid rgba(77,163,77,0.2);" />
       <div>

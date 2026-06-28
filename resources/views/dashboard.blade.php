@@ -154,7 +154,7 @@
                                             @foreach($order->orderItems as $item)
                                                 @if($item->product->user_id === Auth::id())
                                                     <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border shadow-sm transition-all hover:shadow-md" style="border-color:#f0f0f0;">
-                                                        <img src="{{ asset('images/' . $item->product->nama_file_gambar) }}" 
+                                                        <img src="{{ $item->product->image_url }}" 
                                                              alt="{{ $item->product->nama_produk }}" 
                                                              class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border"
                                                              style="border-color:#f0f7f0;">
@@ -648,7 +648,7 @@
                                 <tr>
                                     <td>
                                         <div class="eco-thumb">
-                                            <img src="{{ asset('images/' . $product->nama_file_gambar) }}"
+                                            <img src="{{ $product->image_url }}"
                                                  alt="{{ $product->nama_produk }}" />
                                         </div>
                                     </td>

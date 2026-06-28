@@ -39,4 +39,12 @@ class Product extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function getImageUrlAttribute()
+    {
+        if (str_starts_with($this->nama_file_gambar, 'data:image')) {
+            return $this->nama_file_gambar;
+        }
+        return asset('images/' . $this->nama_file_gambar);
+    }
 }

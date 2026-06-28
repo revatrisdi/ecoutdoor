@@ -235,7 +235,7 @@
 
                                 {{-- Preview gambar saat ini --}}
                                 <div class="flex items-center gap-4 mb-3 p-3 rounded-xl" style="background:#f0f7f0; border:1px solid #d8ecd8;">
-                                    <img src="{{ asset('images/' . $product->nama_file_gambar) }}"
+                                    <img src="{{ $product->image_url }}"
                                          alt="{{ $product->nama_produk }}"
                                          class="w-16 h-16 object-cover rounded-lg"
                                          style="border:1.5px solid #b3d9b3;" />

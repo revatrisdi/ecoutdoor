@@ -346,7 +346,7 @@
         <div class="space-y-3 mb-5">
           @foreach($order->orderItems as $item)
             <div class="flex gap-4 p-4 rounded-2xl" style="background:rgba(11,45,11,0.3); border:1px solid rgba(77,163,77,0.1);">
-              <img src="{{ asset('images/' . $item->product->nama_file_gambar) }}"
+              <img src="{{ $item->product->image_url }}"
                    alt="{{ $item->product->nama_produk }}"
                    class="w-16 h-16 object-cover rounded-xl flex-shrink-0"
                    style="border:1.5px solid rgba(77,163,77,0.2);" />

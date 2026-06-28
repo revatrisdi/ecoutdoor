@@ -322,7 +322,7 @@
         <article id="product-{{ $index }}" class="product-card rounded-2xl overflow-hidden group">
           <a href="{{ route('products.show', $product->id) }}" class="block relative overflow-hidden h-64">
             <img
-              src="{{ asset('images/' . $product->nama_file_gambar) }}"
+              src="{{ $product->image_url }}"
               alt="{{ $product->nama_produk }}"
               class="product-img w-full h-full object-cover"
             />
