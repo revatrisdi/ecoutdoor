@@ -1,19 +1,25 @@
 <?php
 /**
  * Vercel Entry Point for Laravel
- * Proxies requests to the Laravel application.
  */
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-if (!file_exists(__DIR__ . '/../public/index.php')) {
-    echo "HUGE DISCOVERY: The file public/index.php is MISSING in this Vercel Serverless Function! This means Vercel didn't bundle the rest of the project.";
-    exit;
-} else {
-    echo "The file public/index.php EXISTS! The crash is happening inside Laravel.";
-    exit;
-}
+register_shutdown_function(function() {
+    $error = error_get_last();
+    if ($error !== null && in_array($error['type'], [E_ERROR, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR])) {
+        echo "<h1>FATAL ERROR CAUGHT BY SHUTDOWN FUNCTION!</h1>";
+        echo "<pre>";
+        var_dump($error);
+        echo "</pre>";
+    }
+});
 
-require __DIR__ . '/../public/index.php';
+try {
+    require __DIR__ . '/../public/index.php';
+} catch (\Throwable $e) {
+    echo "<h1>EXCEPTION CAUGHT BY TRY-CATCH!</h1>";
+    echo "<pre>" . (string) $e . "</pre>";
+}
