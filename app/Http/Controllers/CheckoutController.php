@@ -199,16 +199,14 @@ class CheckoutController extends Controller
                 ->with('info', 'Pesanan ini sudah diproses.');
         }
 
-        // Hapus bukti lama jika ada
-        if ($order->bukti_bayar) {
-            Storage::disk('public')->delete($order->bukti_bayar);
-        }
-
-        // Simpan file baru
-        $path = $request->file('bukti_bayar')->store('bukti_bayar', 'public');
+        // Simpan file baru sebagai Base64
+        $file = $request->file('bukti_bayar');
+        $imageType = $file->getClientMimeType();
+        $imageData = base64_encode(file_get_contents($file->getRealPath()));
+        $base64Image = 'data:' . $imageType . ';base64,' . $imageData;
 
         $order->update([
-            'bukti_bayar' => $path,
+            'bukti_bayar' => $base64Image,
             'status'      => 'pending', // tetap pending sampai admin konfirmasi
         ]);
 
@@ -264,9 +262,6 @@ class CheckoutController extends Controller
             $msg = "Pesanan {$order->kode_pesanan} berhasil dikonfirmasi.";
         } else {
             // Tolak: kembalikan ke pending, hapus bukti agar pelanggan upload ulang
-            if ($order->bukti_bayar) {
-                Storage::disk('public')->delete($order->bukti_bayar);
-            }
             $order->update([
                 'status'        => 'pending',
                 'bukti_bayar'   => null,
@@ -285,11 +280,6 @@ class CheckoutController extends Controller
     public function destroyOrder($id): RedirectResponse
     {
         $order = Order::findOrFail($id);
-
-        // Hapus bukti transfer jika ada
-        if ($order->bukti_bayar) {
-            Storage::disk('public')->delete($order->bukti_bayar);
-        }
 
         $order->delete();
 

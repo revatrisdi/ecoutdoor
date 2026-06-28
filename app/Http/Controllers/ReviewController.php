@@ -41,7 +41,10 @@ class ReviewController extends Controller
 
         $path = null;
         if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('reviews', 'public');
+            $file = $request->file('gambar');
+            $imageType = $file->getClientMimeType();
+            $imageData = base64_encode(file_get_contents($file->getRealPath()));
+            $path = 'data:' . $imageType . ';base64,' . $imageData;
         }
 
         Review::create([

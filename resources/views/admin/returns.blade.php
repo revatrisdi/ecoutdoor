@@ -124,8 +124,8 @@
                 @if($ret->bukti_foto)
                   <div class="sm:col-span-2">
                     <p class="text-stone-500 text-xs mb-2">Foto Bukti</p>
-                    <a href="{{ asset('storage/' . $ret->bukti_foto) }}" target="_blank">
-                      <img src="{{ asset('storage/' . $ret->bukti_foto) }}" alt="Bukti"
+                    <a href="{{ $ret->bukti_url }}" target="_blank">
+                      <img src="{{ $ret->bukti_url }}" alt="Bukti"
                            class="h-24 w-24 object-cover rounded-xl hover:scale-105 transition-transform"
                            style="border:1.5px solid rgba(77,163,77,0.3);">
                     </a>

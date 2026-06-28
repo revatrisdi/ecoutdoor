@@ -38,4 +38,13 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    public function getBuktiUrlAttribute()
+    {
+        if (!$this->bukti_bayar) return null;
+        if (str_starts_with($this->bukti_bayar, 'data:image')) {
+            return $this->bukti_bayar;
+        }
+        return \Illuminate\Support\Facades\Storage::url($this->bukti_bayar);
+    }
 }

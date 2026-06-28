@@ -41,4 +41,13 @@ class ReturnRequest extends Model
     {
         return self::STATUS_LABELS[$this->status] ?? $this->status;
     }
+
+    public function getBuktiUrlAttribute()
+    {
+        if (!$this->bukti_foto) return null;
+        if (str_starts_with($this->bukti_foto, 'data:image')) {
+            return $this->bukti_foto;
+        }
+        return \Illuminate\Support\Facades\Storage::url($this->bukti_foto);
+    }
 }

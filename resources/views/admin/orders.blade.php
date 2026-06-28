@@ -206,7 +206,7 @@
                   <!-- Bukti -->
                   <td class="px-4 py-3.5">
                     @if($order->bukti_bayar)
-                      <button onclick="openBukti('{{ Storage::url($order->bukti_bayar) }}', '{{ $order->kode_pesanan }}', {{ $order->id }})"
+                      <button onclick="openBukti('{{ $order->bukti_url }}', '{{ $order->kode_pesanan }}', {{ $order->id }})"
                               class="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all hover:scale-105"
                               style="background:rgba(26,115,232,0.15); color:#60a5fa; border:1px solid rgba(26,115,232,0.3);">
                         📄 Lihat Bukti

@@ -24,7 +24,10 @@ class ReturnRequestController extends Controller
 
         $buktiPath = null;
         if ($request->hasFile('bukti_foto')) {
-            $buktiPath = $request->file('bukti_foto')->store('returns', 'public');
+            $file = $request->file('bukti_foto');
+            $imageType = $file->getClientMimeType();
+            $imageData = base64_encode(file_get_contents($file->getRealPath()));
+            $buktiPath = 'data:' . $imageType . ';base64,' . $imageData;
         }
 
         ReturnRequest::create([
@@ -98,9 +101,6 @@ class ReturnRequestController extends Controller
     public function destroy($id)
     {
         $returnReq = ReturnRequest::findOrFail($id);
-        if ($returnReq->bukti_foto) {
-            \Illuminate\Support\Facades\Storage::disk('public')->delete($returnReq->bukti_foto);
-        }
         $returnReq->delete();
 
         return back()->with('success', 'Pengajuan return berhasil dihapus.');

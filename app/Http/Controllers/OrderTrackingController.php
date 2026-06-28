@@ -109,7 +109,10 @@ class OrderTrackingController extends Controller
 
         $gambarPath = null;
         if ($request->hasFile('gambar')) {
-            $gambarPath = $request->file('gambar')->store('reviews', 'public');
+            $file = $request->file('gambar');
+            $imageType = $file->getClientMimeType();
+            $imageData = base64_encode(file_get_contents($file->getRealPath()));
+            $gambarPath = 'data:' . $imageType . ';base64,' . $imageData;
         }
 
         // Simpan review (bisa bulk jika order punya banyak produk, tapi kita simpan ke produk pertama untuk simplicity, atau looping)

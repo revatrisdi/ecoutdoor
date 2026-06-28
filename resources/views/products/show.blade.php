@@ -531,7 +531,7 @@
                   <p class="text-stone-300 text-sm leading-relaxed mb-3 pl-12">{{ $review->komentar }}</p>
                   @if($review->gambar)
                     <div class="pl-12 mt-2">
-                      <img src="{{ asset('storage/' . $review->gambar) }}"
+                      <img src="{{ $review->gambar_url }}"
                            alt="Foto ulasan dari {{ $reviewerName }}"
                            class="h-28 w-28 object-cover rounded-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
                            style="border:1.5px solid rgba(77,163,77,0.2);"

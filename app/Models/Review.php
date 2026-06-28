@@ -25,4 +25,13 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getGambarUrlAttribute()
+    {
+        if (!$this->gambar) return null;
+        if (str_starts_with($this->gambar, 'data:image')) {
+            return $this->gambar;
+        }
+        return \Illuminate\Support\Facades\Storage::url($this->gambar);
+    }
 }
