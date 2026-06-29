@@ -234,7 +234,22 @@ class CheckoutController extends Controller
 
         $orders = $query->paginate(20);
 
-        return view('admin.orders', compact('orders', 'status'));
+        // Data Penjualan Day-to-Day (7 hari terakhir)
+        // Menghitung total_harga dari pesanan yang tidak di-cancel (status != pending/cancelled)
+        // Atau ambil yang sudah dikonfirmasi/dibayar.
+        $chartData = Order::selectRaw('DATE(created_at) as date, SUM(total_harga) as revenue')
+            ->whereNotIn('status', ['cancelled'])
+            ->whereDate('created_at', '>=', now()->subDays(7))
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get();
+            
+        $chartLabels = $chartData->pluck('date')->map(function($date) {
+            return \Carbon\Carbon::parse($date)->format('d M');
+        });
+        $chartValues = $chartData->pluck('revenue');
+
+        return view('admin.orders', compact('orders', 'status', 'chartLabels', 'chartValues'));
     }
 
     /**

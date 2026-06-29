@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -101,6 +102,17 @@
           <p class="text-white font-black text-xl">{{ $totalAll }}</p>
           <p class="text-stone-500 text-xs">Total Pesanan</p>
         </div>
+      </div>
+    </div>
+
+    <!-- Grafik Penjualan Day-to-Day -->
+    <div class="glass rounded-2xl p-5 mb-7">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-white">📈 Tren Pendapatan (7 Hari Terakhir)</h2>
+        <span class="text-xs font-medium text-stone-400 bg-stone-900 px-3 py-1 rounded-full border border-stone-700">Total Penjualan Selesai/Diproses</span>
+      </div>
+      <div style="height: 300px; width: 100%;">
+        <canvas id="revenueChart"></canvas>
       </div>
     </div>
 
@@ -338,6 +350,81 @@
         document.getElementById('modal-reject').style.display = 'none';
       }
     }
+    // Initialize Chart.js for Revenue
+    document.addEventListener("DOMContentLoaded", function() {
+      const ctx = document.getElementById('revenueChart').getContext('2d');
+      const chartLabels = {!! json_encode($chartLabels) !!};
+      const chartValues = {!! json_encode($chartValues) !!};
+      
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: chartLabels,
+          datasets: [{
+            label: 'Total Pendapatan (Rp)',
+            data: chartValues,
+            borderColor: '#4da34d',
+            backgroundColor: 'rgba(77, 163, 77, 0.2)',
+            borderWidth: 2,
+            pointBackgroundColor: '#2d8a2d',
+            pointBorderColor: '#fff',
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: true,
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(11,45,11,0.9)',
+              titleFont: { family: 'Outfit', size: 13 },
+              bodyFont: { family: 'Outfit', size: 14, weight: 'bold' },
+              padding: 10,
+              displayColors: false,
+              callbacks: {
+                label: function(context) {
+                  let label = context.dataset.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.parsed.y !== null) {
+                    label += new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(context.parsed.y);
+                  }
+                  return label;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)' },
+              ticks: { color: '#918e84', font: { family: 'Outfit', size: 12 } }
+            },
+            y: {
+              grid: { color: 'rgba(255,255,255,0.05)', borderColor: 'transparent' },
+              ticks: { 
+                color: '#918e84', 
+                font: { family: 'Outfit', size: 12 },
+                callback: function(value) {
+                  if (value >= 1000000) {
+                    return 'Rp ' + (value / 1000000).toFixed(1) + ' Jt';
+                  } else if (value >= 1000) {
+                    return 'Rp ' + (value / 1000).toFixed(0) + ' Rb';
+                  }
+                  return 'Rp ' + value;
+                }
+              }
+            }
+          }
+        }
+      });
+    });
   </script>
 
 </body>
